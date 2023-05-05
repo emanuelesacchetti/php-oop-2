@@ -20,4 +20,4 @@ $animale_cuccia = new Animale('cane', 'icona');
 $cuccia = new Relax($animale_cuccia, 20, 'immagine', 'cuccia bella', 'giulius', 'resina', 'cuccia', 'large');
 var_dump($cuccia);
 
-
+echo $cuccia->$animale_cuccia[1];

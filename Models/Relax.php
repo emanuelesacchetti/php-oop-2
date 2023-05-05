@@ -9,9 +9,9 @@ class Relax extends Prodotto {
     public $materiale;
     public $taglia;
 
-    public function __construct(Animale $_animale, $_prezzo, $_img, $_titolo, $_brand, $_materiale, $_tipologia, $_taglia)
+    public function __construct(Animale $_animale, $_prezzo, $_img, $_titolo, $_brand, $_categoria, $_materiale, $_tipologia, $_taglia)
     {
-        parent::__construct($_animale, $_prezzo, $_img, $_titolo, $_brand);
+        parent::__construct($_animale, $_prezzo, $_img, $_titolo, $_brand, $_categoria);
         $this->materiale = $_materiale;
         $this->tipologia = $_tipologia;
         $this->taglia = $_taglia;

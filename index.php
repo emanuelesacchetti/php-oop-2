@@ -4,6 +4,8 @@ require_once __DIR__ . '/Models/Prodotto.php';
 require_once __DIR__ . '/Models/Cibo.php';
 require_once __DIR__ . '/Models/Gioco.php';
 require_once __DIR__ . '/Models/Relax.php';
+require_once __DIR__ . '/Models/Utente.php';
+require_once __DIR__ . '/Models/UtenteIscritto.php';
 
 $_cane = new Animale('Cane', '<i class="fa-solid fa-dog"></i>');
 $_gatto = new Animale('Gatto', '<i class="fa-solid fa-cat"></i>');
@@ -17,7 +19,13 @@ $prodotti = [
     new Gioco($_gatto, 10, './images/corda.jpg', 'Corda annodata', 'Gaspare', 'Gioco', 'corda', 'corda')//corda
 ];
 
-//echo $cuccia->animale->icon;
+
+$iscritto = new Iscrizione(true);
+
+$mario = new Utente('mario', 'rossi', 'via roma');
+$gino = new UtenteIscritto('gino', 'bianchi', 'via roma',$iscritto);
+var_dump($mario);
+var_dump($gino);
 
 ?>
 

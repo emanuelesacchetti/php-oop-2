@@ -13,17 +13,17 @@ $_gattoPiccolo = new Animale('Gatto', '<i class="fa-solid fa-cat"></i>', 'py-2 p
 
 
 $cuccia = new Relax($_canePiccolo, 50, './images/cuccia.jpg', 'Il trono del Re', 'Giulius', 'Relax', 'resina', 'cuccia', 'large');//cuccia
-$cuccia->ottieniPeso(10, 'kg');
+$cuccia->ottieniPeso(3);
 $cuscino = new Relax($_caneGrande, 20, './images/cuscino.jpg', 'Il cuscino gigante', 'Giulius', 'Relax', 'cotone', 'cuscino', 'large');//cuscino
-$cuscino->ottieniPeso(500, 'g');
+$cuscino->ottieniPeso(0.5);
 $crocchette = new Cibo($_caneGrande, 50, './images/crocchette.jpg', 'Crocchette Buone', 'Monoprotein', 'Cibo', 'Adult', 'secco', 'cinghiale');//crocchette
-$crocchette->ottieniPeso(12, 'kg');
+$crocchette->ottieniPeso(12);
 $umido = new Cibo($_gattoGrande, 7, './images/umido.jpg', 'Polpa di topo', 'Mario', 'Cibo', 'Puppy', 'umido', 'topo');//umido
-$umido->ottieniPeso(250, 'g');
+$umido->ottieniPeso(0.250);
 $palla = new Gioco($_canePiccolo, 16, './images/palla.jpg', 'Palla matta', 'Pino', 'Gioco', 'plastica', 'palla');//palla
-$palla->ottieniPeso(100, 'g');
+$palla->ottieniPeso(0.1);
 $corda = new Gioco($_gattoPiccolo, 10, './images/corda.jpg', 'Corda annodata', 'Gaspare', 'Gioco', 'corda', 'corda');//corda
-$corda->ottieniPeso(300, 'g');
+$corda->ottieniPeso(0.3);
 
 $prodotti = [
     $cuccia,
@@ -33,6 +33,16 @@ $prodotti = [
     $palla,
     $corda
 ];
+foreach($prodotti as $prodotto){
+    try {
+        $prodotto->validazionePeso($prodotto->peso);
+    } catch (Exception $e) {
+        echo "Si è verificato un errore: " . $e->getMessage();
+    }
+}
+
+
+
 
 ?>
 
@@ -65,7 +75,7 @@ $prodotti = [
                                 <h6 class="card-title"><?php echo $prodotto->prezzo ?>€</h6>
                                 <div class="card-title">Produttore: <strong><?php echo $prodotto->brand ?></strong></div>
                                 <div class="card-title">Categoria: <strong><?php echo $prodotto->categoria ?></strong></div>
-                                <div class="card-title">Peso prodotto: <strong><?php echo $prodotto->settaPeso() ?></strong></div>
+                                <div class="card-title">Peso prodotto: <strong><?php echo $prodotto->settaPeso() ?> Kg</strong></div>
                                 <a href="#" class="btn btn-primary">Aggiungi al carrello</a>
                             </div>
                             <div class="position-absolute top-0 end-0 p-5 rounded-5">

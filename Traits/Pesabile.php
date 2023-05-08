@@ -1,15 +1,22 @@
 <?php
 
 trait Pesabile {
-    protected $peso;
+    public $peso;
     protected $unitaMisura;
 
-    public function ottieniPeso($peso, $unitaMisura){
+    public function ottieniPeso($peso){
         $this->peso = $peso;
-        $this->unitaMisura = $unitaMisura;
+
     }
 
     public function settaPeso(){
-        return $this->peso . ' ' . $this->unitaMisura;
+        return $this->peso;
+    }
+
+    public function validazionePeso($peso){
+        if (!is_numeric($peso)){
+            throw new Exception('Valore peso di non valido');
+        }
+        return $peso;
     }
 }

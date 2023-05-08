@@ -1,14 +1,19 @@
 <?php
 
 require_once __DIR__ . '/Animale.php';
+require_once __DIR__ . '../../Traits/Pesabile.php';
 
 class Prodotto {
+    use Pesabile;
+
     public $prezzo;
     public $img;
     public $titolo;
     public $brand;
     public $categoria;
     public $animale;
+
+
 
     public function __construct(Animale $_animale, $_prezzo, $_img, $_titolo, $_brand, $_categoria)
     {

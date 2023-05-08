@@ -4,28 +4,35 @@ require_once __DIR__ . '/Models/Prodotto.php';
 require_once __DIR__ . '/Models/Cibo.php';
 require_once __DIR__ . '/Models/Gioco.php';
 require_once __DIR__ . '/Models/Relax.php';
-require_once __DIR__ . '/Models/Utente.php';
-require_once __DIR__ . '/Models/UtenteIscritto.php';
 
-$_cane = new Animale('Cane', '<i class="fa-solid fa-dog"></i>');
-$_gatto = new Animale('Gatto', '<i class="fa-solid fa-cat"></i>');
+$_caneGrande = new Animale('Cane', '<i class="fa-solid fa-dog"></i>', 'py-3 px-3');
+$_canePiccolo = new Animale('Cane', '<i class="fa-solid fa-dog"></i>', 'py-2 px-2');
+$_gattoGrande = new Animale('Gatto', '<i class="fa-solid fa-cat"></i>', 'py-3 px-3');
+$_gattoPiccolo = new Animale('Gatto', '<i class="fa-solid fa-cat"></i>', 'py-2 px-2');
+
+
+
+$cuccia = new Relax($_canePiccolo, 50, './images/cuccia.jpg', 'Il trono del Re', 'Giulius', 'Relax', 'resina', 'cuccia', 'large');//cuccia
+$cuccia->ottieniPeso(10, 'kg');
+$cuscino = new Relax($_caneGrande, 20, './images/cuscino.jpg', 'Il cuscino gigante', 'Giulius', 'Relax', 'cotone', 'cuscino', 'large');//cuscino
+$cuscino->ottieniPeso(500, 'g');
+$crocchette = new Cibo($_caneGrande, 50, './images/crocchette.jpg', 'Crocchette Buone', 'Monoprotein', 'Cibo', 'Adult', 'secco', 'cinghiale');//crocchette
+$crocchette->ottieniPeso(12, 'kg');
+$umido = new Cibo($_gattoGrande, 7, './images/umido.jpg', 'Polpa di topo', 'Mario', 'Cibo', 'Puppy', 'umido', 'topo');//umido
+$umido->ottieniPeso(250, 'g');
+$palla = new Gioco($_canePiccolo, 16, './images/palla.jpg', 'Palla matta', 'Pino', 'Gioco', 'plastica', 'palla');//palla
+$palla->ottieniPeso(100, 'g');
+$corda = new Gioco($_gattoPiccolo, 10, './images/corda.jpg', 'Corda annodata', 'Gaspare', 'Gioco', 'corda', 'corda');//corda
+$corda->ottieniPeso(300, 'g');
 
 $prodotti = [
-    new Relax($_cane, 50, './images/cuccia.jpg', 'Il trono del Re', 'Giulius', 'Relax', 'resina', 'cuccia', 'large'),//cuccia
-    new Relax($_cane, 20, './images/cuscino.jpg', 'Il cuscino gigante', 'Giulius', 'Relax', 'cotone', 'cuscino', 'large'),//cuscino
-    new Cibo($_cane, 50, './images/crocchette.jpg', 'Crocchette Buone', 'Monoprotein', 'Cibo', 'Adult', 'secco', 'cinghiale'),//crocchette
-    new Cibo($_gatto, 7, './images/umido.jpg', 'Polpa di topo', 'Mario', 'Cibo', 'Puppy', 'umido', 'topo'),//umido
-    new Gioco($_cane, 16, './images/palla.jpg', 'Palla matta', 'Pino', 'Gioco', 'plastica', 'palla'),//palla
-    new Gioco($_gatto, 10, './images/corda.jpg', 'Corda annodata', 'Gaspare', 'Gioco', 'corda', 'corda')//corda
+    $cuccia,
+    $cuscino,
+    $crocchette,
+    $umido,
+    $palla,
+    $corda
 ];
-
-
-$iscritto = new Iscrizione(true);
-
-$mario = new Utente('mario', 'rossi', 'via roma');
-$gino = new UtenteIscritto('gino', 'bianchi', 'via roma',$iscritto);
-var_dump($mario);
-var_dump($gino);
 
 ?>
 
@@ -58,10 +65,11 @@ var_dump($gino);
                                 <h6 class="card-title"><?php echo $prodotto->prezzo ?>€</h6>
                                 <div class="card-title">Produttore: <strong><?php echo $prodotto->brand ?></strong></div>
                                 <div class="card-title">Categoria: <strong><?php echo $prodotto->categoria ?></strong></div>
+                                <div class="card-title">Peso prodotto: <strong><?php echo $prodotto->settaPeso() ?></strong></div>
                                 <a href="#" class="btn btn-primary">Aggiungi al carrello</a>
                             </div>
                             <div class="position-absolute top-0 end-0 p-5 rounded-5">
-                                <span class='py-2 px-2 text-bg-dark border border-dark rounded-pill'>
+                                <span class='<?php echo $prodotto->animale->grandezzaIcona ?> text-bg-dark border border-dark rounded-pill'>
                                     <?php echo $prodotto->animale->icon ?>
                                 </span>
                             </div>

@@ -4,13 +4,16 @@ require_once __DIR__ . '/Models/Prodotto.php';
 require_once __DIR__ . '/Models/Cibo.php';
 require_once __DIR__ . '/Models/Gioco.php';
 require_once __DIR__ . '/Models/Relax.php';
+require_once __DIR__ . '/Models/Misura.php';
+require_once __DIR__ . '/Models/Animale.php';
 
-$_caneGrande = new Animale('Cane', '<i class="fa-solid fa-dog"></i>', 'py-3 px-3');
-$_canePiccolo = new Animale('Cane', '<i class="fa-solid fa-dog"></i>', 'py-2 px-2');
-$_gattoGrande = new Animale('Gatto', '<i class="fa-solid fa-cat"></i>', 'py-3 px-3');
-$_gattoPiccolo = new Animale('Gatto', '<i class="fa-solid fa-cat"></i>', 'py-2 px-2');
+$grande = new Misura('py-3 px-3', 'grande');
+$piccolo = new Misura('py-2 px-2', 'piccolo');
 
-
+$_caneGrande = new Animale('Cane', '<i class="fa-solid fa-dog"></i>', $grande);
+$_canePiccolo = new Animale('Cane', '<i class="fa-solid fa-dog"></i>', $piccolo);
+$_gattoGrande = new Animale('Gatto', '<i class="fa-solid fa-cat"></i>', $grande);
+$_gattoPiccolo = new Animale('Gatto', '<i class="fa-solid fa-cat"></i>', $piccolo);
 
 $cuccia = new Relax($_canePiccolo, 50, './images/cuccia.jpg', 'Il trono del Re', 'Giulius', 'Relax', 'resina', 'cuccia', 'large');//cuccia
 $cuccia->ottieniPeso(3);
@@ -37,13 +40,10 @@ foreach($prodotti as $prodotto){
     try {
         $prodotto->validazionePeso($prodotto->peso);
     } catch (Exception $e) {
+
         echo "Si è verificato un errore: " . $e->getMessage();
     }
 }
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -79,8 +79,8 @@ foreach($prodotti as $prodotto){
                                 <a href="#" class="btn btn-primary">Aggiungi al carrello</a>
                             </div>
                             <div class="position-absolute top-0 end-0 p-5 rounded-5">
-                                <span class='<?php echo $prodotto->animale->grandezzaIcona ?> text-bg-dark border border-dark rounded-pill'>
-                                    <?php echo $prodotto->animale->icon ?>
+                                <span class='<?php echo $prodotto->animale->misura->paddingIcona ?> text-bg-dark border border-dark rounded-pill'>
+                                    <?php echo $prodotto->animale->icon ?> - <?php echo $prodotto->animale->misura->text ?>
                                 </span>
                             </div>
                         </div>

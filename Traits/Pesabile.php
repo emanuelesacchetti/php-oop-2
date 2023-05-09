@@ -15,7 +15,7 @@ trait Pesabile {
 
     public function validazionePeso($peso){
         if (!is_numeric($peso)){
-            throw new Exception('Valore peso di non valido');
+            throw new Exception('Un valore peso non valido. Ricontrolla i pesi dei prodotti');
         }
         return $peso;
     }
